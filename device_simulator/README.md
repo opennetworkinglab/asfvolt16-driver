@@ -41,27 +41,31 @@ Apply grpc-c patch
         (This patch is having very few changes in two files(grpc-c/lib/client.c, grpc-c/lib/service.c. 
          Download these two files from above link and replace at grpc-c/lib or merge these changes manually.)       
      Patch 2:
-     Apply patch in service.c.patch and client.c.patch 
+     Apply patch in service.c.patch and client.c.patch under asfvolt16-driver/device_simulator
+     
+     Further copy the contents of asfvolt16-driver/device_simulator as below:
      - cp Makefile.am grpc-c/examples/
      - cp bal_server.c grpc-c/examples/
      - cp bal_stub.c grpc-c/examples/
      - cp bal_stub.h grpc-c/examples/
-         - Note: Update voltha adaptor IP in bal_stub.c
+         - Note: Update voltha adaptor IP in function call "grpc_c_client_init" in bal_stub.c
      - autoreconf --install
      - mkdir build && cd build
      - ../configure
+         - Note: Remove "-O2" from Makefile
      - make
      - sudo make install
    
 To obtain proto files - Have a repo sync of opencord code base:
-     - cp opencord/incubator/voltha/voltha/adapters/asfvolt16_olt/protos/* examples/
+     - cp opencord/incubator/voltha/voltha/adapters/asfvolt16_olt/protos/* grpc-c/examples/
 
 To autogenerate code from proto files:
+     - cd grpc-c/build/examples
      - make autogen
        
 Build bal_server:
      - Note: Remove "-O2" from Makefile
-     - make clean_all;make 
+     - make clean_all;make all
 
 The ultimate executable bal_server can be found under ~/grpc-c/build/examples/.libs/
 
