@@ -36,3 +36,4 @@ bal_queue *createQueue();
 struct QNode* newNode(int objKey, int status, char *device_id);
 void enQueue(int objKey, struct QNode *temp);
 struct QNode *deQueue();
+void stub_bal_init(char *ip_port);
